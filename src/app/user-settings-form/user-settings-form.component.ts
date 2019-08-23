@@ -8,13 +8,16 @@ import { IUserSettings } from '../data/iuser-settings';
 })
 export class UserSettingsFormComponent implements OnInit {
 
-  IUserSettings: IUserSettings = {
+  originalUserSettings: IUserSettings = {
     name: 'Moses',
     emailOffers: true,
     interfaceStyle: 'dark',
     subscriptionType: 'Annual',
     notes: 'some notes'
   };
+
+  theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
+                                                                    // and copies each property into userSettings
 
   constructor() { }
 
