@@ -13,7 +13,7 @@ export class UserSettingsFormComponent implements OnInit {
     emailOffers: true,
     interfaceStyle: 'dark',
     subscriptionType: 'Annual',
-    notes: 'some notes'
+    notes: 'some initial original notes'
   };
 
   theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
