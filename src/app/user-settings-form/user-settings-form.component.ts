@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserSettings } from '../data/iuser-settings';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -16,12 +17,24 @@ export class UserSettingsFormComponent implements OnInit {
     notes: 'some initial original notes'
   };
 
-  theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
-                                                                    // and copies each property into userSettings
+  blankUserSettings: IUserSettings = {
+    name: null,
+    emailOffers: null,
+    interfaceStyle: null,
+    subscriptionType: null,
+    notes: null
+  };
+
+  theUserSettings: IUserSettings = { ...this.blankUserSettings }; // the '...' or spread operator, takes originalUserSettings
+                                                                    // and copies each property into theUserSettings
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    console.log('in onSubmit: ', form.valid);
   }
 
 }
