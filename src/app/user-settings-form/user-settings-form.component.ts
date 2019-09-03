@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserSettings } from '../data/iuser-settings';
 import { NgForm, NgModel } from '@angular/forms';
+import { DataService } from '../data/data.service';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -25,10 +26,10 @@ export class UserSettingsFormComponent implements OnInit {
     notes: null
   };
 
-  theUserSettings: IUserSettings = { ...this.blankUserSettings }; // the '...' or spread operator, takes originalUserSettings
+  theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
                                                                     // and copies each property into theUserSettings
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -39,6 +40,10 @@ export class UserSettingsFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
+    this.dataService.postUserSettingsForm(this.theUserSettings).subscribe(
+      result => console.log('success: ', result),
+      error => console.log('error: ', error)
+    );
   }
 
 }
