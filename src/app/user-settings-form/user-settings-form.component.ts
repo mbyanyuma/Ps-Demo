@@ -28,6 +28,8 @@ export class UserSettingsFormComponent implements OnInit {
 
   theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
                                                                     // and copies each property into theUserSettings
+  postError = false;
+  postErrorMessage = '';
 
   constructor(private dataService: DataService) { }
 
@@ -38,12 +40,26 @@ export class UserSettingsFormComponent implements OnInit {
     console.log('in onBlur: ', field.value);
   }
 
+  onHttpError(errorResponse: any) {
+    console.log('error: ', errorResponse);
+    this.postError = true;
+    this.postErrorMessage = errorResponse.error.errorMessage;
+  }
+
   onSubmit(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
-    this.dataService.postUserSettingsForm(this.theUserSettings).subscribe(
-      result => console.log('success: ', result),
-      error => console.log('error: ', error)
-    );
+
+    if (form.valid) {
+
+      this.dataService.postUserSettingsForm(this.theUserSettings).subscribe(
+        result => console.log('success: ', result),
+        error => console.log('error: ', error)
+      );
+      this.postError = false;
+    } else {
+      this.postError = true;
+      this.postErrorMessage = 'please fix the above errors';
+    }
   }
 
 }
