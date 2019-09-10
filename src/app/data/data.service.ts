@@ -10,6 +10,10 @@ export class DataService {
 
   constructor(private theHttp: HttpClient) { }
 
+  getSubscriptionTypes(): Observable<string[]> {
+    return of(['Monthly', 'Annual', 'Lifetime']);
+  }
+
   postUserSettingsForm(userSettings: IUserSettings): Observable<any> {
     // tslint:disable-next-line: no-trailing-whitespace
     
