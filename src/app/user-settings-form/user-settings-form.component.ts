@@ -32,7 +32,6 @@ export class UserSettingsFormComponent implements OnInit {
   postError = false;
   postErrorMessage = '';
   subscriptionTypes: Observable<string[]>;
-
   singleModel = 'On';
 
   constructor(private dataService: DataService) { }
