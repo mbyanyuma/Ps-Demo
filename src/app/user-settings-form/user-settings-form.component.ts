@@ -27,7 +27,7 @@ export class UserSettingsFormComponent implements OnInit {
     notes: null
   };
 
-  theUserSettings: IUserSettings = { ...this.blankUserSettings }; // the '...' or spread operator, takes originalUserSettings
+  theUserSettings: IUserSettings = { ...this.originalUserSettings }; // the '...' or spread operator, takes originalUserSettings
                                                                     // and copies each property into theUserSettings
   postError = false;
   postErrorMessage = '';
